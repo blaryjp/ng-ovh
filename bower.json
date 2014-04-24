@@ -1,0 +1,17 @@
+{
+  "name": "ng-ovh",
+  "version": "0.0.0",
+  "authors": [
+    "Jean-Philippe Blary (@blary_jp)"
+  ],
+  "description": "Angular Service for OVH API",
+  "keywords": [
+    "angular",
+    "service",
+    "provider",
+    "ovh",
+    "api"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/blaryjp/ng-ovh"
+}
