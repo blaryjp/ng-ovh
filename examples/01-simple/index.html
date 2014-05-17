@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ngOvh - Example 01: simple app</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  <script src="../../ng-ovh.js"></script>
+  <script src="example01.js"></script>
+
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="myInfosCtrl">
+
+        <p>Don't forget to add your Application Key and your Application Secret in the script file.</p>
+
+        <button ng-hide="isLogged" ng-click="login()">Log in</button>
+
+        <dl ng-show="isLogged && infos">
+            <dt>Last name: </dt> <dd>{{infos.name}}</dd>
+            <dt>First name: </dt> <dd>{{infos.firstname}}</dd>
+            <dt>Email: </dt> <dd>{{infos.email}}</dd>
+            <dt>Phone: </dt> <dd>{{infos.cellNumber}}</dd>
+        </dl>
+
+    </div>
+
+</body>
+</html>
