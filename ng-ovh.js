@@ -195,7 +195,7 @@ angular.module('ngOvh').provider('Ovh', function () {
                     // Replace all URL params
                     angular.forEach(params, function (paramVal, paramKey) {
                         if ((new RegExp('{' + paramKey + '}')).test(config.url)) {
-                            config.url = config.url.replace('{' + paramKey + '}', paramVal);
+                            config.url = config.url.replace('{' + paramKey + '}', encodeURIComponent(paramVal));
                             delete params[paramKey];
                         }
                     });
