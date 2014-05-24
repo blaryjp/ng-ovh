@@ -185,7 +185,7 @@ angular.module('ngOvh').provider('Ovh', function () {
                 // Because we delete params from original object, save a local copy.
                 var params = config.params;
 
-                // User can use an url like "/token/{tokenId}" with the corresponding parameters (here, "params.tokenId"),
+                // User can use an url like "/dedicated/server/{serviceName}" with the corresponding parameters (here, "serviceName"),
                 // and it will be automatically replaced.
                 // Based on a great idea of @gierschv
                 if (config.params && ~config.url.indexOf('{')) {

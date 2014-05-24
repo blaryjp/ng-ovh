@@ -9,8 +9,6 @@ Angular service for the [OVH](https://api.ovh.com) API.
 
 The OVH API Console is available [here](https://api.ovh.com/console).
 
-[TODO] Tests
-
 
 Installation
 ------------
