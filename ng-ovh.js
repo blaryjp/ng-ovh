@@ -35,6 +35,10 @@ angular.module('ngOvh').provider('Ovh', function () {
         ck: ''     // Consumer Key
     };
 
+    var preventReturnData = false;
+
+    var apiDiff;    // fast patch
+
     /*==========  CONF  ==========*/
 
     /**
@@ -73,6 +77,11 @@ angular.module('ngOvh').provider('Ovh', function () {
      */
     this.setAccessRules = function (rules) {
         accessRules = rules;
+    };
+
+
+    this.setPreventReturnData = function (_preventReturnData) {
+        preventReturnData = _preventReturnData;
     };
 
 
@@ -216,7 +225,7 @@ angular.module('ngOvh').provider('Ovh', function () {
                 return $http(config).then(function (data) {
 
                     // Return datas only
-                    return data.data;
+                    return preventReturnData ? data : data.data;
 
                 }, function (error) {
                     return $q.reject(error);
@@ -285,19 +294,27 @@ angular.module('ngOvh').provider('Ovh', function () {
          * @return {promise} Success/Error.
          */
         function getApiTimeDiff () {
-            return $http({
-                method  : 'GET',
-                url     : baseUrl + '/auth/time',
-                cache   : ovhCache,
-                headers : getHeaders()
-            }).then(function (data) {
+            if (apiDiff === undefined) {
+                return $http({
+                    method  : 'GET',
+                    url     : baseUrl + '/auth/time',
+                    cache   : ovhCache,
+                    headers : getHeaders()
+                }).then(function (data) {
 
-                // Calculate the time lag between system clock and API time
-                return Math.floor(Date.now() / 1000) - data.data;
+                    // Calculate the time lag between system clock and API time
+                    apiDiff = Math.floor(Date.now() / 1000) - data.data;
+                    return apiDiff;
 
-            }, function (error) {
-                return $q.reject(error);
-            });
+                }, function (error) {
+                    return $q.reject(error);
+                });
+            } else {
+                // fast patch
+                return $q.when(true).then(function () {
+                    return apiDiff;
+                });
+            }
         }
 
         /**
