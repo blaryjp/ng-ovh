@@ -213,10 +213,12 @@ angular.module('ngOvh').provider('Ovh', function () {
                 // Get cached params
                 config.params = params;
 
+                var requestUrl = URI(config.url).addSearch(config.params || {}).toString();
+
                 // Get headers
                 config.headers = config.noAuthentication ? getHeaders() : getHeaders({
                     method : config.method,
-                    url    : config.url,
+                    url    : requestUrl,
                     body   : config.data ? angular.toJson(config.data) : '',
                     diff   : diff
                 });
