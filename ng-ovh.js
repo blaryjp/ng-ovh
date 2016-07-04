@@ -176,6 +176,20 @@ angular.module('ngOvh').provider('Ovh', function () {
             });
         }
 
+
+        /**
+         * Set Consumer Key
+         *
+         * @param  {string} Consumer Key
+         * @return {void}
+         */
+        function setConsumerKey (ck) {
+            localStorage.setItem('ovh-ck',ck);
+            keys.ck = ck;
+            return;
+        }
+
+
         /**
          * Perform a request to the OVH API.
          *
@@ -538,7 +552,8 @@ angular.module('ngOvh').provider('Ovh', function () {
             logout    : logout,
             isLogged  : isLogged,
             getSchema : getSchema,
-            getModels : getModels
+            getModels : getModels,
+            setConsumerKey : setConsumerKey
         };
 
         // Generate all REST requests
